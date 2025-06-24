@@ -211,13 +211,6 @@
         <field name="unk13" type="char"/>
     </struct>
 
-    <struct name="MapEffectRow">
-        <comment>A row of warp effects</comment>
-        <field name="y" type="char"/>
-        <length name="tiles_count" type="char"/>
-        <array name="tiles" type="MapWarpRowTile" length="tiles_count"/>
-    </struct>
-
     <struct name="MapWarpRowTile">
         <comment>A single tile in a row of warp entities</comment>
         <field name="x" type="char"/>
