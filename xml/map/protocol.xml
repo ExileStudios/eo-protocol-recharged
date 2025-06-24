@@ -256,9 +256,41 @@
       <value name="Exclude">2</value>
     </enum>
 
+    <enum name="MapCompressionType" type="signedbyte">
+        <value name="LZSS">2</value>
+        <value name="LZW">3</value>
+    </enum>
+
     <struct name="MapTileStep">
       <field name="graphic" type="short"/>
       <field name="mode" type="MapTileStepMode"/>
+    </struct>
+
+    <struct name="MapKey">
+        <field name="coords" type="Coords"/>
+        <field name="id"     type="short"/>
+        <field name="type"   type="char"/>
+    </struct>
+
+    <struct name="MapPrelude">
+        <field name="coords"     type="Coords"/>
+        <field name="prelude_id" type="char"/>
+        <field name="unk1"       type="short"/>
+        <field name="unk2"       type="short"/>
+        <field name="secondary_id" type="short"/>
+    </struct>
+
+    <struct name="MapSign">
+        <field name="coords"  type="Coords"/>
+        <length name="msg_len" type="short"/>
+        <field  name="msg"    type="encoded_string" length="msg_len"/>
+    </struct>
+
+    <struct name="MapEffectRow">
+        <comment>A row of map-effect tiles (lighting, particles, etc.)</comment>
+        <field  name="y"            type="char"/>
+        <length name="tiles_count"  type="char"/>
+        <array  name="tiles"        type="MapEffectRowTile" length="tiles_count"/>
     </struct>
 
     <struct name="Emf">
@@ -270,6 +302,7 @@
         <field name="width" type="char"/>
         <field name="height" type="char"/>
         <field name="name" type="encoded_string" length="32" padded="true"/>
+        
         <field name="unk1" type="char"/>
         <field name="fill_tile" type="short"/>
         <array name="tile_steps" type="MapTileStep" length="4"/>
@@ -304,33 +337,29 @@
 
         <field name="unk8" type="char"/>
         <field name="unk9" type="char"/>
-
         <field name="respawn_coords" type="Coords"/>
-
         <field name="unk10" type="char"/>
         <field name="unk11" type="char"/>
         <field name="unk12" type="char"/>
         <field name="unk13" type="char"/>
         <field name="unk14" type="char"/>
         <field name="unk15" type="char"/>
-
-        <field name="wayfarer_id" type="char"/>
+        <field name="wayfarer_id"   type="char"/>
         <field name="wayfarer_coords" type="Coords"/>
         
         <field name="unk16" type="char"/>
         <field name="unk17" type="char"/>
         <field name="unk18" type="char"/>
         <field name="unk19" type="char"/>
-        <field name="unk20" type="char"/>
-        <field name="unk21" type="char"/>
+        <field name="compression" type="MapCompressionType"/>
 
         <length name="npcs_count" type="char"/>
         <array name="npcs" type="MapNpc" length="npcs_count"/>
 
         <field name="unk22" type="char"/>
 
-        <length name="unk_count" type="char"/>
-        <array name="unks" type="MapUnk" length="unk_count"/>
+        <length name="keys_count" type="char"/>
+        <array  name="keys"       type="MapKey" length="keys_count"/>
 
         <field name="unk23" type="char"/>
         <field name="unk24" type="char"/>
@@ -352,5 +381,22 @@
 
         <length name="warp_rows_count" type="char"/>
         <array name="warp_rows" type="MapWarpRow" length="warp_rows_count"/>
+        <compressed compression_type="compression">
+            <array name="graphic_layers" type="MapGraphicLayer" length="13">
+                <comment>
+                    The 13 layers of map graphics.
+                    Order is [Ground, Raised, Object, Mask, Down Wall, Right Wall, Wall Object, Roof, Desk, Desk Object, Blends, Edge Mask, High Wall Object, Lighting Effect]
+                </comment>
+            </array>
+
+            <length name="effect_rows_count" type="char"/>
+            <array  name="effect_rows" type="MapEffectRow" length="effect_rows_count"/>
+
+            <length name="prelude_count" type="char"/>
+            <array  name="preludes" type="MapPrelude" length="prelude_count"/>
+
+            <length name="sign_count" type="char"/>
+            <array  name="signs" type="MapSign" length="sign_count"/>
+        </compressed>
     </struct>
 </protocol>
