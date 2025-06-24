@@ -37,6 +37,16 @@
       <value name="NotFound">1</value>
     </enum>
 
+    <enum name="AccountResult" type="short">
+      <comment>Reply code sent with ACCOUNT_RESULT packet</comment>
+      <value name="Exists">1</value>
+      <value name="NotApproved">2</value>
+      <value name="Created">3</value>
+      <value name="ChangeFailed">5</value>
+      <value name="Changed">6</value>
+      <value name="RequestDenied">7</value>
+    </enum>
+
     <enum name="LoginResult" type="short">
         <comment>
             Result code sent with LOGIN_REPLY packet.
@@ -1191,6 +1201,54 @@
       <comment>Nearby player transformed into an npc</comment>
       <field name="player_id" type="short"/>
       <field name="npc_id" type="short"/>
+    </packet>
+
+    <packet family="Account" action="Result">
+      <comment>Reply to client Account-family packets</comment>
+      <field name="result_code" type="AccountResult">
+        <comment>
+            Sometimes an AccountResult code, sometimes a session ID for account creation
+        </comment>
+      </field>
+      <switch field="result_code">
+        <case value="0">
+          <!-- No effect in the official client -->
+        </case>
+        <case value="Exists">
+          <field type="string">NO</field>
+        </case>
+        <case value="NotApproved">
+          <field type="string">NO</field>
+        </case>
+        <case value="Created">
+          <field type="string">GO</field>
+        </case>
+        <case value="4">
+          <!-- No effect in the official client -->
+        </case>
+        <case value="ChangeFailed">
+          <field type="string">NO</field>
+        </case>
+        <case value="Changed">
+          <field type="string">OK</field>
+        </case>
+        <case value="RequestDenied">
+          <field type="string">NO</field>
+        </case>
+        <case value="8">
+          <!-- No effect in the official client -->
+        </case>
+        <case value="9">
+          <!-- No effect in the official client -->
+        </case>
+        <case default="true">
+          <comment>
+            In this case (reply_code &gt; 9), reply_code is a session ID for account creation
+          </comment>
+          <field name="sequence_start" type="char"/>
+          <field type="string">OK</field>
+        </case>
+      </switch>
     </packet>
 
     <packet family="Chat" action="Set">

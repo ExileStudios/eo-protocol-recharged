@@ -9,6 +9,36 @@
       <comment>Account info request</comment>
       <dummy type="byte">255</dummy>
     </packet>
+
+    <packet family="Account" action="Request">
+        <comment>Request creating an account</comment>
+        <field name="username" type="string"/>
+    </packet>
+
+    <packet family="Account" action="Create">
+      <comment>
+      Confirm creating an account
+      Password is encrypted
+      </comment>
+      <chunked>
+        <field name="session_id" type="short"/>
+        <break/>
+        <field name="username" type="string"/>
+        <break/>
+        <field name="password" type="string"/>
+        <break/>
+        <field name="full_name" type="string"/>
+        <break/>
+        <field name="location" type="string"/>
+        <break/>
+        <field name="email" type="string"/>
+        <break/>
+        <field name="computer" type="string"/>
+        <break/>
+        <field name="hdid" type="string"/>
+        <break/>
+      </chunked>
+    </packet>
  
     <packet family="Attack" action="Do">
       <comment>Attacking</comment>
