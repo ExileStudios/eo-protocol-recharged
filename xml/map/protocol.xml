@@ -115,7 +115,7 @@
         <field name="gather_type" type="MapGatherType"/>
         <field name="hit_count" type="char"/>
         <field name="unk1" type="char"/>
-        
+
         <field name="blend_id" type="short"/>
         <field name="tile_id" type="short"/>
         <field name="graphic_id" type="short"/>
@@ -231,6 +231,13 @@
         <field name="graphic" type="short"/>
     </struct>
 
+    <struct name="MapGraphicRowTileRaised">
+        <comment>A single tile in a row of map graphics</comment>
+        <field name="x" type="char"/>
+        <field name="graphic" type="short"/>
+        <field name="y_offset" type="char"/>
+    </struct>
+
     <struct name="MapGraphicRow">
         <comment>A row in a layer of map graphics</comment>
         <field name="y" type="char"/>
@@ -238,7 +245,20 @@
         <array name="tiles" type="MapGraphicRowTile" length="tiles_count"/>
     </struct>
 
+    <struct name="MapGraphicRowRaised">
+        <comment>A row in a layer of map graphics</comment>
+        <field name="y" type="char"/>
+        <length name="tiles_count" type="char"/>
+        <array name="tiles" type="MapGraphicRowTileRaised" length="tiles_count"/>
+    </struct>
+
     <struct name="MapGraphicLayer">
+        <comment>A layer of map graphics</comment>
+        <length name="graphic_rows_count" type="char"/>
+        <array name="graphic_rows" type="MapGraphicRow" length="graphic_rows_count"/>
+    </struct>
+
+    <struct name="MapGraphicLayerRaised">
         <comment>A layer of map graphics</comment>
         <length name="graphic_rows_count" type="char"/>
         <array name="graphic_rows" type="MapGraphicRow" length="graphic_rows_count"/>
@@ -377,10 +397,16 @@
         <length name="warp_rows_count" type="char"/>
         <array name="warp_rows" type="MapWarpRow" length="warp_rows_count"/>
         <compressed compression_type="compression">
-            <array name="graphic_layers" type="MapGraphicLayer" length="13">
+            <field name="ground_layer" type="MapGraphicLayer"/>
+            <field name="raised_layer" type="MapGraphicLayerRaised">
                 <comment>
-                    The 13 layers of map graphics.
-                    Order is [Ground, Raised, Object, Mask, Down Wall, Right Wall, Wall Object, Roof, Desk, Desk Object, Blends, Edge Mask, High Wall Object, Lighting Effect]
+                    Raised layer has an additional Y Offset
+                </comment>
+            </field>
+            <array name="graphic_layers" type="MapGraphicLayer" length="11">
+                <comment>
+                    The remaining layers of map graphics.
+                    Order is [Object, Mask, Down Wall, Right Wall, Wall Object, Roof, Desk, Desk Object, Blends, Edge Mask, High Wall Object, Lighting Effect]
                 </comment>
             </array>
 
