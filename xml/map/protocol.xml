@@ -261,7 +261,7 @@
     <struct name="MapGraphicLayerRaised">
         <comment>A layer of map graphics</comment>
         <length name="graphic_rows_count" type="char"/>
-        <array name="graphic_rows" type="MapGraphicRow" length="graphic_rows_count"/>
+        <array name="graphic_rows" type="MapGraphicRowRaised" length="graphic_rows_count"/>
     </struct>
 
     <enum name="MapTileStepMode" type="char">
