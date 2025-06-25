@@ -330,7 +330,7 @@
         <field name="allow_scroll" type="bool"/>
 
         <field name="unk9" type="char"/>
-        <field name="unk19" type="char"/>
+        <field name="unk10" type="char"/>
         <field name="respawn_coords" type="Coords"/>
         <field name="unk11" type="char"/>
         <field name="unk12" type="char"/>
