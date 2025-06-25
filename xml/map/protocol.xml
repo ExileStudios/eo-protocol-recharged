@@ -312,8 +312,9 @@
         <field name="channel_swap_delay" type="char"/>
         <field name="unk5" type="char"/>
         <field name="unk6" type="char"/>
-        <field name="weather_type" type="char"/>
         <field name="unk7" type="char"/>
+        <field name="weather_type" type="char"/>
+        <field name="unk8" type="char"/>
         <field name="day_mode" type="char"/>
         <field name="day_mode_override" type="char"/>
         <field name="ambient_light" type="char"/>
@@ -328,22 +329,22 @@
         <field name="allow_minimap" type="bool"/>
         <field name="allow_scroll" type="bool"/>
 
-        <field name="unk8" type="char"/>
         <field name="unk9" type="char"/>
+        <field name="unk19" type="char"/>
         <field name="respawn_coords" type="Coords"/>
-        <field name="unk10" type="char"/>
         <field name="unk11" type="char"/>
         <field name="unk12" type="char"/>
         <field name="unk13" type="char"/>
         <field name="unk14" type="char"/>
         <field name="unk15" type="char"/>
+        <field name="unk16" type="char"/>
         <field name="wayfarer_id"   type="char"/>
         <field name="wayfarer_coords" type="Coords"/>
         
-        <field name="unk16" type="char"/>
         <field name="unk17" type="char"/>
         <field name="unk18" type="char"/>
         <field name="unk19" type="char"/>
+        <field name="unk20" type="char"/>
         <field name="compression" type="MapCompressionType"/>
 
         <length name="npcs_count" type="char"/>
