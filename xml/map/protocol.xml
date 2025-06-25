@@ -80,14 +80,13 @@
         <comment>NPC spawn EMF entity</comment>
         <field name="coords" type="Coords"/>
         <field name="id" type="short"/>
+        <field name="interaction_id" type="char"/>
+        <field name="boundary_coords" type="Coords"/>
+        <field name="courage" type="char"/>
         <field name="unk1" type="char"/>
-        <field name="unk2" type="char"/>
-        <field name="unk3" type="char"/>
-        <field name="unk4" type="char"/>
-        <field name="unk5" type="char"/>
         <field name="spawn_type" type="char"/>
         <field name="spawn_time" type="short"/>
-        <field name="unk6" type="char"/>
+        <field name="unk2" type="char"/>
         <field name="amount" type="char"/>
     </struct>
 
@@ -115,15 +114,12 @@
         <field name="coords" type="Coords"/>
         <field name="gather_type" type="MapGatherType"/>
         <field name="hit_count" type="char"/>
-        <field name="unk3" type="char"/>
-        <field name="unk4" type="char"/>
-        <field name="unk5" type="char"/>
-        <field name="unk6" type="char"/>
-        <field name="unk7" type="char"/>
+        <field name="unk1" type="char"/>
+        <field name="blend_id" type="short"/>
+        <field name="tile_id" type="short"/>
         <field name="graphic_id" type="short"/>
-        <field name="item_id" type="short"/>
         <field name="spawn_time" type="short"/>
-        <field name="unk10" type="char"/>
+        <field name="unk2" type="char"/>
         <field name="max_amount" type="char"/>
     </struct>
 
@@ -150,6 +146,7 @@
         <field name="unk1" type="char"/>
         <field name="unk2" type="char"/>
         <field name="unk3" type="char"/>
+        <field name="unk4" type="char"/>
     </struct>
 
     <struct name="MapUnk4">
@@ -176,6 +173,7 @@
         <field name="spec" type="char"/>
         <field name="door" type="char"/>
         <field name="quest_id" type="short"/>
+        <field name="unk1" type="char"/>
         <field name="destination_map" type="short"/>
         <field name="destination_coords" type="Coords"/>
     </struct>
