@@ -115,9 +115,12 @@
         <field name="gather_type" type="MapGatherType"/>
         <field name="hit_count" type="char"/>
         <field name="unk1" type="char"/>
+        
         <field name="blend_id" type="short"/>
         <field name="tile_id" type="short"/>
         <field name="graphic_id" type="short"/>
+        <field name="item_id" type="short"/>
+
         <field name="spawn_time" type="short"/>
         <field name="unk2" type="char"/>
         <field name="max_amount" type="char"/>
